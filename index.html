@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Jad Ali Agha | مصمم غرافيك</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Cairo', sans-serif; }
+        body { background: #f9fafb; scroll-behavior: smooth; }
+        .gradient-bg { background: linear-gradient(135deg, #1e2b3c 0%, #0f1a24 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15); }
+        .modal-transition { transition: opacity 0.25s ease, visibility 0.25s ease; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #2c3e4e; border-radius: 10px; }
+        .work-img { aspect-ratio: 4 / 3; object-fit: cover; }
+        .logo-img { width: 55px; height: 55px; object-fit: cover; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .admin-btn-fixed { position: fixed; bottom: 20px; left: 20px; z-index: 40; background: #1e2b3c; color: white; border-radius: 60px; padding: 12px 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); backdrop-filter: blur(4px); font-weight: 600; gap: 8px; border: none; cursor: pointer; transition: 0.2s; }
+        .admin-btn-fixed:hover { background: #0f1a24; transform: scale(1.02); }
+        @media (max-width: 640px) { .admin-btn-fixed { padding: 10px 14px; font-size: 0.8rem; } }
+        .payment-card img { max-height: 180px; object-fit: contain; background: white; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 md:py-8">
+        
+        <!-- HEADER -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-2 border-b border-gray-200">
+            <div class="flex items-center gap-3">
+                <div id="logoContainer">
+                    <img id="siteLogo" class="logo-img border border-gray-200 bg-white" alt="شعار الموقع" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='67' font-size='42' text-anchor='middle' fill='%23f1c40f' font-weight='bold'%3EJ%3C/text%3E%3C/svg%3E">
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-800">Jad Ali Agha</h1>
+                    <p class="text-gray-500 text-sm">مصمم غرافيك محترف</p>
+                </div>
+            </div>
+            <div class="flex gap-3 text-gray-700 font-medium">
+                <a href="#about" class="hover:text-[#2c3e4e] transition px-2 py-1">نبذة</a>
+                <a href="#works" class="hover:text-[#2c3e4e] transition px-2 py-1">أعمالي</a>
+                <a href="#contact" class="hover:text-[#2c3e4e] transition px-2 py-1">تواصل</a>
+                <a href="#payment" class="hover:text-[#2c3e4e] transition px-2 py-1">طرق الدفع</a>
+            </div>
+        </div>
+
+        <!-- ABOUT -->
+        <section id="about" class="gradient-bg rounded-3xl p-6 md:p-10 text-white shadow-xl mb-12">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="flex-1 text-center md:text-right">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Jad Ali Agha</h2>
+                    <p class="text-lg md:text-xl opacity-90 mb-3">مصمم جرافيك بخبرة تمتد لأكثر من 5 سنوات في الهوية البصرية، تصميم المطبوعات، والهوية الرقمية.</p>
+                    <p class="text-base opacity-80 leading-relaxed">أؤمن بأن التصميم الجيد يحكي قصة العلامة التجارية بوضوح وإبداع. أقدم حلولاً بصرية مبتكرة تناسب تطلعات عملائي، وأحرص على التفاصيل التي تصنع الفارق.</p>
+                </div>
+                <div class="flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-2xl p-4 w-40 h-40 flex items-center justify-center">
+                    <i class="fas fa-pen-nib text-6xl text-yellow-300"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORKS -->
+        <section id="works" class="mb-14">
+            <div class="flex justify-between items-center mb-6 flex-wrap gap-3">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 border-r-4 border-[#2c3e4e] pr-4">أعمالي</h2>
+                <button onclick="openAdminModal()" class="bg-gray-800 hover:bg-gray-900 text-white px-5 py-2 rounded-full text-sm font-semibold shadow transition flex items-center gap-2"><i class="fas fa-plus-circle"></i> إدارة الأعمال</button>
+            </div>
+            <div id="worksGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+                <div class="col-span-full text-center py-12 text-gray-400">جارٍ تحميل الأعمال...</div>
+            </div>
+        </section>
+
+        <!-- CONTACT (بالبريد والرقم المطلوبين) -->
+        <section id="contact" class="mb-14 bg-white rounded-2xl shadow-md p-6 md:p-8 border border-gray-100">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 border-r-4 border-[#2c3e4e] pr-4">التواصل معي</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
+                            <i class="fas fa-envelope text-2xl text-[#2c3e4e] w-8"></i>
+                            <div><p class="font-bold">البريد الإلكتروني</p><a href="mailto:jad.graphic.designer@gmail.com" class="text-gray-600 hover:text-[#2c3e4e]">jad.graphic.designer@gmail.com</a></div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
+                            <i class="fab fa-whatsapp text-2xl text-green-600 w-8"></i>
+                            <div><p class="font-bold">واتساب</p><a href="https://wa.me/963947002969" class="text-gray-600">+963 947 002 969</a></div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
+                            <i class="fab fa-instagram text-2xl text-pink-600 w-8"></i>
+                            <div><p class="font-bold">إنستغرام</p><a href="#" class="text-gray-600">@jad_ali_design</a></div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
+                            <i class="fas fa-phone-alt text-2xl text-blue-600 w-8"></i>
+                            <div><p class="font-bold">اتصال مباشر</p><a href="tel:+963947002969" class="text-gray-600">+963 947 002 969</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-5 rounded-2xl">
+                    <h3 class="font-bold text-lg mb-3">أرسل لي رسالة</h3>
+                    <form action="mailto:jad.graphic.designer@gmail.com" method="POST" enctype="text/plain">
+                        <input type="text" name="الاسم" placeholder="اسمك" class="w-full p-3 rounded-xl border border-gray-300 mb-3 focus:outline-none focus:ring-2 focus:ring-[#2c3e4e]" required>
+                        <input type="email" name="البريد" placeholder="بريدك الإلكتروني" class="w-full p-3 rounded-xl border border-gray-300 mb-3 focus:outline-none focus:ring-2 focus:ring-[#2c3e4e]" required>
+                        <textarea name="الرسالة" rows="3" placeholder="نص الرسالة..." class="w-full p-3 rounded-xl border border-gray-300 mb-3 focus:outline-none focus:ring-2 focus:ring-[#2c3e4e]"></textarea>
+                        <button type="submit" class="bg-[#2c3e4e] hover:bg-[#1e2b3c] text-white px-6 py-2 rounded-full w-full font-semibold transition">إرسال <i class="fas fa-paper-plane mr-1"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAYMENT - مع الصور التي رفعتها (شام كاش و MTN كاش) -->
+        <section id="payment" class="mb-14 bg-white rounded-2xl shadow-md p-6 md:p-8 border border-gray-100">
+            <div class="flex justify-between items-center flex-wrap gap-3 mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 border-r-4 border-[#2c3e4e] pr-4">طرق الدفع</h2>
+                <button onclick="openAdminModal()" class="text-sm bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full flex items-center gap-2"><i class="fas fa-edit"></i> تعديل الصور</button>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-8">
+                <!-- Sham Cash: صورة تحتوي اسمك والرمز الذي رفعته -->
+                <div class="bg-gray-50 rounded-2xl p-5 text-center shadow-sm payment-card">
+                    <div class="flex justify-center mb-3"><i class="fas fa-wallet text-3xl text-green-700"></i></div>
+                    <h3 class="text-xl font-bold mb-2">شام كاش</h3>
+                    <div class="mt-3 flex justify-center">
+                        <img id="shamCashImg" class="rounded-xl max-w-full shadow-md border border-gray-200 cursor-pointer" alt="كود محفظة شام كاش" 
+                             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0f7e8'/%3E%3Ctext x='50%25' y='30%25' font-size='18' text-anchor='middle' fill='%232a5e2b' font-weight='bold'%3E%25D8%25AC%25D8%25A7%25D8%25AF %25D9%2585%25D8%25A7%25D8%25B2%25D9%2586 %25D8%25B9%25D9%2584%25D9%258A %25D8%25A2%25D8%25BA%25D8%25A7%3C/text%3E%3Ctext x='50%25' y='55%25' font-size='14' text-anchor='middle' fill='%23444'%3E%3C%21%5BCDATA%5Bcae39473ec1428eb1036a8a8b54bc165%5D%5D%3E%3C/text%3E%3Ctext x='50%25' y='80%25' font-size='12' text-anchor='middle' fill='%23666'%3E%25D9%2583%25D9%2588%25D8%25AF %25D8%25A7%25D9%2584%25D9%2585%25D8%25AD%25D9%2581%25D8%25B8%25D8%25A9 %3C/text%3E%3C/svg%3E">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-3">رمز المحفظة: cae39473ec1428eb1036a8a8b54bc165</p>
+                </div>
+                <!-- MTN Cash: صورة تحتوي الرقم الذي رفعته -->
+                <div class="bg-gray-50 rounded-2xl p-5 text-center shadow-sm payment-card">
+                    <div class="flex justify-center mb-3"><i class="fas fa-mobile-alt text-3xl text-blue-700"></i></div>
+                    <h3 class="text-xl font-bold mb-2">MTN كاش</h3>
+                    <div class="mt-3 flex justify-center">
+                        <img id="mtnCashImg" class="rounded-xl max-w-full shadow-md border border-gray-200 cursor-pointer" alt="كود محفظة MTN كاش" 
+                             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23e6f2ff'/%3E%3Ctext x='50%25' y='35%25' font-size='28' text-anchor='middle' fill='%231e3a8a' font-weight='bold'%3EMTN%3C/text%3E%3Ctext x='50%25' y='70%25' font-size='22' text-anchor='middle' fill='%23133c6b' font-family='monospace'%3E8198582131325391%3C/text%3E%3Ctext x='50%25' y='90%25' font-size='12' text-anchor='middle' fill='%23444'%3E%25D8%25B1%25D9%2582%25D9%2585 %25D8%25A7%25D9%2584%25D9%2585%25D8%25AD%25D9%2581%25D8%25B8%25D8%25A9%3C/text%3E%3C/svg%3E">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-3">رقم المحفظة: 8198582131325391</p>
+                </div>
+            </div>
+            <p class="text-center text-xs text-gray-400 mt-5">*يمكنك استبدال هذه الصور بالصور الأصلية عبر لوحة التحكم (زر تعديل الصور).</p>
+        </section>
+
+        <footer class="border-t border-gray-200 pt-6 pb-4 text-center text-gray-500 text-sm">
+            <p>© 2025 جميع الحقوق محفوظة | <span class="font-semibold">Jad Ali Agha</span> | مصمم جرافيك</p>
+            <p class="text-xs mt-1">حقوق النشر محفوظة لصالح Jad Ali Agha</p>
+        </footer>
+    </main>
+
+    <!-- ADMIN MODAL (إدارة الأعمال + تحديث صور الدفع والشعار) -->
+    <div id="adminModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4 transition-all opacity-0 invisible modal-transition">
+        <div class="bg-white rounded-2xl w-full max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl">
+            <div class="sticky top-0 bg-white border-b p-4 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-gray-800"><i class="fas fa-cog ml-2"></i> لوحة التحكم (خاص بي)</h3>
+                <button onclick="closeAdminModal()" class="text-gray-500 hover:text-red-600 text-2xl">&times;</button>
+            </div>
+            <div class="p-5 space-y-8">
+                <!-- إدارة الأعمال -->
+                <div>
+                    <h4 class="text-lg font-bold border-r-4 border-[#2c3e4e] pr-3 mb-4">إدارة الأعمال (إضافة / حذف)</h4>
+                    <div class="bg-gray-50 p-4 rounded-xl mb-4">
+                        <h5 class="font-semibold mb-2">➕ إضافة عمل جديد</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <input type="text" id="newWorkTitle" placeholder="عنوان العمل" class="p-2 border rounded-lg">
+                            <textarea id="newWorkDesc" placeholder="وصف مختصر" rows="1" class="p-2 border rounded-lg"></textarea>
+                            <div class="col-span-2 flex gap-3 flex-wrap">
+                                <label class="bg-white border px-3 py-2 rounded-lg cursor-pointer"><i class="fas fa-upload"></i> رفع صورة<input type="file" id="newWorkImageFile" accept="image/*" class="hidden"></label>
+                                <input type="text" id="newWorkImageUrl" placeholder="أو رابط صورة (URL)" class="flex-1 p-2 border rounded-lg">
+                            </div>
+                            <button onclick="addWorkFromAdmin()" class="bg-[#2c3e4e] text-white py-2 rounded-lg">إضافة العمل</button>
+                        </div>
+                    </div>
+                    <div id="worksAdminList" class="space-y-3 max-h-60 overflow-y-auto"></div>
+                </div>
+                <!-- تحديث صور الدفع -->
+                <div class="border-t pt-4">
+                    <h4 class="text-lg font-bold border-r-4 border-[#2c3e4e] pr-3 mb-3">تحديث صور الدفع</h4>
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="font-semibold block mb-1">صورة شام كاش (استبدل بالصورة الحقيقية)</label>
+                            <input type="file" id="updateShamCashInput" accept="image/*" class="mb-2">
+                            <button onclick="updateShamCashImage()" class="bg-gray-700 text-white px-3 py-1 rounded text-sm">تحديث الصورة</button>
+                        </div>
+                        <div>
+                            <label class="font-semibold block mb-1">صورة MTN كاش (استبدل بالصورة الحقيقية)</label>
+                            <input type="file" id="updateMtnCashInput" accept="image/*" class="mb-2">
+                            <button onclick="updateMtnCashImage()" class="bg-gray-700 text-white px-3 py-1 rounded text-sm">تحديث الصورة</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- تحديث الشعار -->
+                <div class="border-t pt-4">
+                    <h4 class="text-lg font-bold border-r-4 border-[#2c3e4e] pr-3 mb-3">تحديث الشعار</h4>
+                    <div class="flex items-center gap-4 flex-wrap">
+                        <input type="file" id="updateLogoInput" accept="image/*">
+                        <button onclick="updateLogoImage()" class="bg-gray-800 text-white px-4 py-2 rounded-lg text-sm">تغيير الشعار</button>
+                    </div>
+                </div>
+                <div class="text-xs text-gray-400">*جميع التغييرات تحفظ تلقائياً في المتصفح.</div>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="openAdminModal()" class="admin-btn-fixed flex items-center gap-2"><i class="fas fa-sliders-h"></i> <span>إدارة الموقع</span></button>
+
+    <script>
+        // ---------- STORAGE KEYS ----------
+        const STORAGE_WORKS = "jad_portfolio_works";
+        const STORAGE_SHAM = "jad_sham_cash_img";
+        const STORAGE_MTN = "jad_mtn_cash_img";
+        const STORAGE_LOGO = "jad_logo_img";
+
+        // الأعمال الافتراضية
+        let defaultWorks = [
+            { id: "1", title: "هوية بصرية - ماركة قهوة", description: "تصميم شعار وبطاقات عمل وكتالوجات", image: "https://picsum.photos/id/104/400/300" },
+            { id: "2", title: "ملصق دعائي - مهرجان ثقافي", description: "تصميم جرافيك متكامل بلمسة عصرية", image: "https://picsum.photos/id/106/400/300" },
+            { id: "3", title: "غلاف مجلة فنية", description: "تصميم غلاف احترافي", image: "https://picsum.photos/id/20/400/300" }
+        ];
+
+        let worksArray = [];
+
+        function loadWorks() {
+            const stored = localStorage.getItem(STORAGE_WORKS);
+            if(stored) worksArray = JSON.parse(stored);
+            else { worksArray = defaultWorks.map(w => ({ ...w, id: Date.now() + Math.random() + w.title })); saveWorks(); }
+            renderWorksGrid();
+            renderWorksAdminList();
+        }
+        function saveWorks() { localStorage.setItem(STORAGE_WORKS, JSON.stringify(worksArray)); }
+
+        function renderWorksGrid() {
+            const grid = document.getElementById("worksGrid");
+            if(!worksArray.length) { grid.innerHTML = `<div class='col-span-full text-center py-12 text-gray-400'>📭 لا توجد أعمال مضافة. أضف أعمالك عبر لوحة الإدارة.</div>`; return; }
+            grid.innerHTML = worksArray.map(work => `
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gray-100">
+                    <img src="${work.image}" class="work-img w-full h-52 object-cover" alt="${work.title}" onerror="this.src='https://via.placeholder.com/400x300?text=صورة+غير+متاحة'">
+                    <div class="p-4"><h3 class="font-bold text-lg">${escapeHtml(work.title)}</h3><p class="text-gray-500 text-sm">${escapeHtml(work.description)}</p></div>
+                </div>
+            `).join("");
+        }
+        function renderWorksAdminList() {
+            const container = document.getElementById("worksAdminList");
+            if(!worksArray.length) { container.innerHTML = "<div class='text-gray-400 text-center py-3'>لا يوجد أعمال، أضف أول عمل</div>"; return; }
+            container.innerHTML = worksArray.map(work => `
+                <div class="flex justify-between items-center bg-white p-3 rounded-xl border">
+                    <div class="flex gap-3 items-center">
+                        <img src="${work.image}" class="w-12 h-12 rounded-lg object-cover" onerror="this.src='https://via.placeholder.com/50'">
+                        <div><strong>${escapeHtml(work.title)}</strong><p class="text-xs text-gray-500">${escapeHtml(work.description.substring(0,50))}</p></div>
+                    </div>
+                    <button onclick="deleteWorkById('${work.id}')" class="text-red-500 hover:text-red-700 text-lg px-3"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            `).join("");
+        }
+
+        function addWorkFromAdmin() {
+            let title = document.getElementById("newWorkTitle").value;
+            let desc = document.getElementById("newWorkDesc").value;
+            const file = document.getElementById("newWorkImageFile").files[0];
+            const url = document.getElementById("newWorkImageUrl").value.trim();
+            if(file) fileToDataURL(file, dataUrl => { addWorkInternal(title, desc, dataUrl); cl
