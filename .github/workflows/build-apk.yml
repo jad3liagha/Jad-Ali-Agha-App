@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -24,17 +24,44 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Create www folder and copy web files
+      - name: Prepare web files
         run: |
           mkdir -p www
-          cp -r * www/ 2>/dev/null || true
-          echo "Contents of www:"
+          cp index.html www/
+          # إذا كان لديك أي مجلدات أخرى مثل images، انسخها أيضاً
+          # cp -r images www/ 2>/dev/null || true
           ls -la www/
-          # تأكد من وجود index.html
-          if [ -f www/index.html ]; then echo "✅ index.html found"; else echo "❌ index.html NOT found"; exit 1; fi
 
       - name: Install Capacitor
         run: |
+          npm install -g @capacitor/cli
+          npm install @capacitor/core @capacitor/android
+
+      - name: Create Capacitor project
+        run: |
+          npx cap init JadAliAgha com.jadaliagha.app --web-dir=www
+          npx cap add android
+
+      - name: Patch Gradle for Java 17
+        run: |
+          cd android
+          # تعديل app/build.gradle لضبط Java 17
+          sed -i 's/compileSdk [0-9]*/compileSdk 34/' app/build.gradle
+          sed -i '/compileOptions {/a \        sourceCompatibility JavaVersion.VERSION_17\n        targetCompatibility JavaVersion.VERSION_17' app/build.gradle
+          # تعديل gradle-wrapper.properties لاستخدام Gradle 8.0
+          echo "distributionUrl=https\\://services.gradle.org/distributions/gradle-8.0-bin.zip" > gradle/wrapper/gradle-wrapper.properties
+
+      - name: Build APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: JadAliAgha-App
+          path: android/app/build/outputs/apk/debug/app-debug.apk        run: |
           npm install -g @capacitor/cli
           npm install @capacitor/core @capacitor/android
 
