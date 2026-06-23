@@ -18,7 +18,7 @@
         .payment-card img { max-height: 180px; object-fit: contain; background: white; border-radius: 1rem; }
         .clickable-code { cursor: pointer; background: #f0f4f8; padding: 4px 10px; border-radius: 30px; display: inline-block; transition: 0.2s; font-family: monospace; direction: ltr; }
         .clickable-code:hover { background: #e2e8f0; }
-        .toast-msg { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #2c3e4e; color: white; padding: 8px 16px; border-radius: 40px; font-size: 14px; z-index: 100; opacity: 0; transition: 0.3s ease; pointer-events: none; }
+        .toast-msg { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #2c3e4e; color: white; padding: 8px 16px; border-radius: 40px; font-size: 14px; z-index: 100; opacity: 0; transition: 0.2s; pointer-events: none; }
     </style>
 </head>
 <body>
@@ -47,8 +47,8 @@
         <div class="flex flex-col md:flex-row gap-8 items-center">
             <div class="flex-1 text-center md:text-right">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Jad Ali Agha</h2>
-                <p class="text-lg md:text-xl opacity-90 mb-3">مصمم جرافيك بخبرة تمتد لأكثر من 5 سنوات في الهوية البصرية، تصميم MOCKUPS الرقمية والتجارية، وتطوير نماذج الواجهات.</p>
-                <p class="text-base opacity-80 leading-relaxed">أؤمن بأن التصميم الجيد يحكي قصة العلامة التجارية بوضوح وإبداع باستخدام أدوات مثل Adobe Photoshop و Illustrator. أقدم حلولاً بصرية مبتكرة تناسب تطلعات عملائي، وأحرص على التفاصيل التي تصنع الفارق.</p>
+                <p class="text-lg md:text-xl opacity-90 mb-3">مصمم جرافيك بخبرة تمتد لأكثر من 5 سنوات في الهوية البصرية، تصميم المطبوعات، والهوية الرقمية.</p>
+                <p class="text-base opacity-80 leading-relaxed">أؤمن بأن التصميم الجيد يحكي قصة العلامة التجارية بوضوح وإبداع. أقدم حلولاً بصرية مبتكرة تناسب تطلعات عملائي، وأحرص على التفاصيل التي تصنع الفارق.</p>
             </div>
             <div class="flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-2xl p-4 w-40 h-40 flex items-center justify-center">
                 <i class="fas fa-pen-nib text-6xl text-yellow-300"></i>
@@ -63,35 +63,34 @@
 
     <section id="contact" class="mb-14 bg-white rounded-2xl shadow-md p-6 md:p-8 border border-gray-100">
         <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 border-r-4 border-[#2c3e4e] pr-4">التواصل معي</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
-                        <i class="fas fa-envelope text-2xl text-[#2c3e4e] w-8"></i>
-                        <div><p class="font-bold">البريد الإلكتروني</p><a href="mailto:jad.designer.work@gmail.com" class="text-gray-600">jad.designer.work@gmail.com</a></div>
-                    </div>
-                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
-                        <i class="fab fa-whatsapp text-2xl text-green-600 w-8"></i>
-                        <div><p class="font-bold">واتساب</p><a href="https://wa.me/963947002969?text=مرحباً%20جاد،%20أرغب%20في%20الاستفسار%20عن%20خدمات%20التصميم." target="_blank" class="text-gray-600">+963 947 002 969</a></div>
-                    </div>
-                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
-                        <i class="fab fa-instagram text-2xl text-pink-600 w-8"></i>
-                        <div><p class="font-bold">إنستغرام</p><a href="#" class="text-gray-600">@jad_ali_design</a></div>
-                    </div>
-                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
-                        <i class="fas fa-phone-alt text-2xl text-blue-600 w-8"></i>
-                        <div><p class="font-bold">اتصال مباشر</p><a href="tel:+963947002969" class="text-gray-600">+963 947 002 969</a></div>
-                    </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition">
+                <i class="fas fa-envelope text-2xl text-[#2c3e4e] w-8 text-center"></i>
+                <div>
+                    <p class="font-bold">البريد الإلكتروني</p>
+                    <a href="mailto:jad.designer.work@gmail.com" class="text-gray-600 break-all">jad.designer.work@gmail.com</a>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-5 rounded-2xl">
-                <h3 class="font-bold text-lg mb-3">أرسل لي رسالة</h3>
-                <form id="contactForm" action="https://formspree.io/f/xdarkoag" method="POST">
-                    <input type="text" name="name" placeholder="اسمك" class="w-full p-3 rounded-xl border border-gray-300 mb-3" required>
-                    <input type="email" name="email" placeholder="بريدك الإلكتروني" class="w-full p-3 rounded-xl border border-gray-300 mb-3" required>
-                    <textarea name="message" rows="3" placeholder="نص الرسالة..." class="w-full p-3 rounded-xl border border-gray-300 mb-3" required></textarea>
-                    <button type="submit" id="submitBtn" class="bg-[#2c3e4e] hover:bg-[#1e2b3c] text-white px-6 py-2 rounded-full w-full font-semibold transition">إرسال <i class="fas fa-paper-plane mr-1"></i></button>
-                </form>
+            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition">
+                <i class="fab fa-whatsapp text-2xl text-green-600 w-8 text-center"></i>
+                <div>
+                    <p class="font-bold">واتساب</p>
+                    <a href="https://wa.me/963947002969" target="_blank" class="text-gray-600">+963 947 002 969</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition">
+                <i class="fab fa-instagram text-2xl text-pink-600 w-8 text-center"></i>
+                <div>
+                    <p class="font-bold">إنستغرام</p>
+                    <a href="#" class="text-gray-600">@jad_ali_design</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition">
+                <i class="fas fa-phone-alt text-2xl text-blue-600 w-8 text-center"></i>
+                <div>
+                    <p class="font-bold">اتصال مباشر</p>
+                    <a href="tel:+963947002969" class="text-gray-600">+963 947 002 969</a>
+                </div>
             </div>
         </div>
     </section>
@@ -140,7 +139,7 @@
     if (worksGrid) {
         worksGrid.innerHTML = works.map(work => `
             <div class="bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gray-100 transition">
-                <img src="${work.image}" class="work-img w-full h-52 object-cover" alt="${work.title}">
+                <img src="${work.image}" class="work-img w-full h-52 object-cover" alt="${work.title}" onerror="this.src='https://via.placeholder.com/400x300?text=صورة'">
                 <div class="p-4">
                     <h3 class="font-bold text-lg text-gray-800">${escapeHtml(work.title)}</h3>
                     <p class="text-gray-500 text-sm mt-1">${escapeHtml(work.description)}</p>
@@ -163,7 +162,7 @@
         toast.style.opacity = "1";
         setTimeout(() => {
             toast.style.opacity = "0";
-        }, 3000);
+        }, 2000);
     }
 
     function escapeHtml(str) {
@@ -173,37 +172,6 @@
             if (m === '<') return '&lt;';
             if (m === '>') return '&gt;';
             return m;
-        });
-    }
-
-    // كود إرسال النموذج برمجياً دون مغادرة الصفحة وعرض الإشعار التلقائي
-    const form = document.getElementById("contactForm");
-    if(form) {
-        form.addEventListener("submit", async function(e) {
-            e.preventDefault();
-            const btn = document.getElementById("submitBtn");
-            btn.disabled = true;
-            btn.innerHTML = "جاري الإرسال... <i class='fas fa-spinner fa-spin mr-1'></i>";
-            
-            const formData = new FormData(form);
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    showToast("✅ تم إرسال رسالتك بنجاح! سأتواصل معك قريباً.");
-                    form.reset();
-                } else {
-                    showToast("❌ حدث خطأ، يرجى التأكد من إعدادات الرابط.");
-                }
-            } catch (error) {
-                showToast("❌ فشل الإرسال، تحقق من اتصال الإنترنت لديك.");
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = "إرسال <i class='fas fa-paper-plane mr-1'></i>";
-            }
         });
     }
 
