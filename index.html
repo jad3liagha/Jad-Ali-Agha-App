@@ -3,197 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Jad Ali Agha | مصمم جرافيك</title>
+    <title>Jad Ali Agha | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#2c3e4e',
+                        accent: '#f1c40f'
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        * { font-family: 'Cairo', sans-serif; }
-        body { background: #f9fafb; scroll-behavior: smooth; }
-        .gradient-bg { background: linear-gradient(135deg, #1e2b3c 0%, #0f1a24 100%); }
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15); }
-        .work-img { aspect-ratio: 4 / 3; object-fit: cover; }
-        .logo-img { width: 55px; height: 55px; object-fit: cover; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
-        .payment-card img { max-height: 180px; object-fit: contain; background: white; border-radius: 1rem; }
-        .clickable-code { cursor: pointer; background: #f0f4f8; padding: 4px 10px; border-radius: 30px; display: inline-block; transition: 0.2s; font-family: monospace; direction: ltr; }
-        .clickable-code:hover { background: #e2e8f0; }
-        .toast-msg { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #2c3e4e; color: white; padding: 8px 16px; border-radius: 40px; font-size: 14px; z-index: 100; opacity: 0; transition: 0.2s; pointer-events: none; }
+        * { font-family: 'Cairo', sans-serif; transition: background-color 0.3s, color 0.3s; }
+        body { scroll-behavior: smooth; }
+        .work-card img { transition: transform 0.5s ease; }
+        .work-card:hover img { transform: scale(1.1); }
+        .filter-btn.active { background-color: #2c3e4e; color: white; }
+        .dark .filter-btn.active { background-color: #f1c40f; color: black; }
+        
+        /* Lightbox Style */
+        #lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; cursor: zoom-out; }
+        #lightbox img { max-width: 90%; max-height: 80%; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.5); cursor: default; }
+
+        .logo-img { width: 50px; height: 50px; object-fit: cover; border-radius: 12px; }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: block; }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
 
-<div id="toast" class="toast-msg"></div>
-
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 md:py-8">
-    
-    <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-2 border-b border-gray-200">
-        <div class="flex items-center gap-3">
-            <img id="siteLogo" class="logo-img border border-gray-200 bg-white" alt="شعار Jad Ali Agha" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='67' font-size='42' text-anchor='middle' fill='%23f1c40f' font-weight='bold'%3EJ%3C/text%3E%3C/svg%3E">
-            <div>
-                <h1 class="text-2xl md:text-3xl font-extrabold text-gray-800">Jad Ali Agha</h1>
-                <p class="text-gray-500 text-sm">مصمم جرافيك محترف</p>
-            </div>
-        </div>
-        <div class="flex gap-3 text-gray-700 font-medium">
-            <a href="#about" class="hover:text-[#2c3e4e]">نبذة</a>
-            <a href="#works" class="hover:text-[#2c3e4e]">أعمالي</a>
-            <a href="#contact" class="hover:text-[#2c3e4e]">تواصل</a>
-            <a href="#payment" class="hover:text-[#2c3e4e]">طرق الدفع</a>
+    <div id="lightbox" onclick="closeLightbox()">
+        <div class="relative flex flex-col items-center">
+            <button class="absolute -top-12 left-0 text-white text-3xl" onclick="closeLightbox()">&times;</button>
+            <img id="lightboxImg" src="" alt="Preview">
+            <h3 id="lightboxTitle" class="text-white mt-4 text-xl font-bold"></h3>
         </div>
     </div>
 
-    <section id="about" class="gradient-bg rounded-3xl p-6 md:p-10 text-white shadow-xl mb-12">
-        <div class="flex flex-col md:flex-row gap-8 items-center">
-            <div class="flex-1 text-center md:text-right">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Jad Ali Agha</h2>
-                <p class="text-lg md:text-xl opacity-90 mb-3">مصمم جرافيك بخبرة تمتد لأكثر من 5 سنوات في الهوية البصرية، تصميم المطبوعات، والهوية الرقمية.</p>
-                <p class="text-base opacity-80 leading-relaxed">أؤمن بأن التصميم الجيد يحكي قصة العلامة التجارية بوضوح وإبداع. أقدم حلولاً بصرية مبتكرة تناسب تطلعات عملائي، وأحرص على التفاصيل التي تصنع الفارق.</p>
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="IMG_20260323_234615_713.svg" class="logo-img bg-brand p-1" alt="Jad Logo">
+                <span class="text-xl font-extrabold tracking-tight hidden sm:block">JAD ALI AGHA</span>
             </div>
-            <div class="flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-2xl p-4 w-40 h-40 flex items-center justify-center">
-                <i class="fas fa-pen-nib text-6xl text-yellow-300"></i>
+
+            <nav class="hidden md:flex items-center gap-8 font-semibold">
+                <a href="#about" class="hover:text-accent">عني</a>
+                <a href="#works" class="hover:text-accent">أعمالي</a>
+                <a href="#contact" class="hover:text-accent">تواصل</a>
+                <a href="#payment" class="hover:text-accent">الدفع</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button onclick="toggleTheme()" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-xl">
+                    <i id="themeIcon" class="fas fa-moon"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
-    </section>
 
-    <section id="works" class="mb-14">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 border-r-4 border-[#2c3e4e] pr-4">أعمالي</h2>
-        <div id="worksGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-            <p class="text-center text-gray-400 col-span-full py-4">جاري تحميل الأعمال...</p>
+        <div id="mobileMenu" class="mobile-menu md:hidden bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4">
+            <div class="flex flex-col gap-4 text-center font-bold">
+                <a href="#about" onclick="toggleMobileMenu()">عني</a>
+                <a href="#works" onclick="toggleMobileMenu()">أعمالي</a>
+                <a href="#contact" onclick="toggleMobileMenu()">تواصل</a>
+                <a href="#payment" onclick="toggleMobileMenu()">الدفع</a>
+            </div>
         </div>
-    </section>
+    </header>
 
-    <section id="contact" class="mb-14 bg-white rounded-2xl shadow-md p-6 md:p-8 border border-gray-100">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 border-r-4 border-[#2c3e4e] pr-4">التواصل معي</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
-                        <i class="fas fa-envelope text-2xl text-[#2c3e4e] w-8"></i>
-                        <div><p class="font-bold">البريد الإلكتروني</p><a href="mailto:jad.designer.work@gmail.com" class="text-gray-600">jad.designer.work@gmail.com</a></div>
+    <main class="max-w-7xl mx-auto px-4 py-10">
+
+        <section id="about" class="mb-20">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-accent font-bold mb-2 tracking-widest uppercase">مصمم جرافيك</h2>
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-6">أحول الأفكار إلى <span class="text-brand dark:text-accent">هويات مرئية</span> مبهرة.</h1>
+                    <p class="text-lg opacity-80 leading-relaxed mb-8">أكثر من 5 سنوات من الخبرة في بناء العلامات التجارية وتصميم المطبوعات الرقمية. أركز على التفاصيل لخلق تجربة فريدة لعملائك.</p>
+                    <div class="flex gap-4">
+                        <a href="#contact" class="bg-brand dark:bg-accent dark:text-black text-white px-8 py-3 rounded-full font-bold shadow-lg">ابدأ مشروعك</a>
                     </div>
-                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
-                        <i class="fab fa-whatsapp text-2xl text-green-600 w-8"></i>
-                        <div><p class="font-bold">واتساب</p><a href="https://wa.me/963947002969" class="text-gray-600">+963 947 002 969</a></div>
-                    </div>
-                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
-                        <i class="fab fa-instagram text-2xl text-pink-600 w-8"></i>
-                        <div><p class="font-bold">إنستغرام</p><a href="#" class="text-gray-600">@jad_ali_design</a></div>
-                    </div>
-                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl">
-                        <i class="fas fa-phone-alt text-2xl text-blue-600 w-8"></i>
-                        <div><p class="font-bold">اتصال مباشر</p><a href="tel:+963947002969" class="text-gray-600">+963 947 002 969</a></div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square rounded-3xl bg-gray-200 dark:bg-gray-800 overflow-hidden shadow-2xl">
+                        <img src="https://picsum.photos/id/1/600/600" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700" alt="Jad Profile">
                     </div>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-5 rounded-2xl">
-                <h3 class="font-bold text-lg mb-3">أرسل لي رسالة</h3>
-                <form action="mailto:jad.designer.work@gmail.com" method="POST" enctype="text/plain">
-                    <input type="text" name="الاسم" placeholder="اسمك" class="w-full p-3 rounded-xl border border-gray-300 mb-3" required>
-                    <input type="email" name="البريد" placeholder="بريدك الإلكتروني" class="w-full p-3 rounded-xl border border-gray-300 mb-3" required>
-                    <textarea name="الرسالة" rows="3" placeholder="نص الرسالة..." class="w-full p-3 rounded-xl border border-gray-300 mb-3"></textarea>
-                    <button type="submit" class="bg-[#2c3e4e] hover:bg-[#1e2b3c] text-white px-6 py-2 rounded-full w-full font-semibold transition">إرسال <i class="fas fa-paper-plane mr-1"></i></button>
+        </section>
+
+        <section id="works" class="mb-20">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold mb-2">معرض الأعمال</h2>
+                    <div class="h-1 w-20 bg-brand dark:bg-accent"></div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterWorks('all')" class="filter-btn active px-5 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-bold" data-filter="all">الكل</button>
+                    <button onclick="filterWorks('branding')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-bold" data-filter="branding">هوية بصرية</button>
+                    <button onclick="filterWorks('logos')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-bold" data-filter="logos">شعارات</button>
+                    <button onclick="filterWorks('uiux')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-bold" data-filter="uiux">واجهات UI</button>
+                </div>
+            </div>
+
+            <div id="worksGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
+        </section>
+
+        <section id="contact" class="mb-20 bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 dark:border-gray-700">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">هل لديك مشروع؟ <br>دعنا نتحدث!</h2>
+                    <div class="space-y-6">
+                        <a href="https://wa.me/963947002969?text=مرحباً جاد، أرغب في الاستفسار عن خدمات التصميم الخاصة بك." class="flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600">
+                                <i class="fab fa-whatsapp text-2xl"></i>
+                            </div>
+                            <span class="font-bold group-hover:text-accent transition">+963 947 002 969</span>
+                        </a>
+                        <a href="mailto:jad.designer.work@gmail.com" class="flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+                                <i class="fas fa-envelope text-2xl"></i>
+                            </div>
+                            <span class="font-bold group-hover:text-accent transition">jad.designer.work@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+                <form name="contact" method="POST" data-netlify="true" class="space-y-4">
+                    <input type="hidden" name="form-name" value="contact">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" name="name" placeholder="الاسم" class="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl w-full border border-gray-200 dark:border-gray-700 outline-none focus:border-brand dark:focus:border-accent" required>
+                        <input type="email" name="email" placeholder="الإيميل" class="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl w-full border border-gray-200 dark:border-gray-700 outline-none focus:border-brand dark:focus:border-accent" required>
+                    </div>
+                    <textarea name="message" rows="4" placeholder="كيف يمكنني مساعدتك؟" class="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl w-full border border-gray-200 dark:border-gray-700 outline-none focus:border-brand dark:focus:border-accent" required></textarea>
+                    <button type="submit" class="w-full py-4 bg-brand dark:bg-accent text-white dark:text-black font-bold rounded-xl shadow-lg hover:opacity-90 transition">إرسال الرسالة</button>
                 </form>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="payment" class="mb-14 bg-white rounded-2xl shadow-md p-6 md:p-8 border border-gray-100">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 border-r-4 border-[#2c3e4e] pr-4">طرق الدفع</h2>
-        <div class="grid sm:grid-cols-2 gap-8">
-            <div class="bg-gray-50 rounded-2xl p-5 text-center shadow-sm payment-card">
-                <div class="flex justify-center mb-3"><i class="fas fa-wallet text-3xl text-green-700"></i></div>
-                <h3 class="text-xl font-bold mb-2">شام كاش</h3>
-                <div class="mt-3 flex justify-center">
-                    <img src="IMG-20260623-WA0004.svg" alt="باركود شام كاش" class="rounded-xl max-w-full shadow-md border border-gray-200" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23f0f7e8\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%23333\'%3Eشام كاش%3C/text%3E%3C/svg%3E';">
+        <section id="payment" class="mb-20 text-center">
+            <h2 class="text-3xl font-bold mb-10">طرق الدفع الإلكتروني</h2>
+            <div class="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h3 class="font-bold mb-4">شام كاش</h3>
+                    <img src="IMG-20260623-WA0004.svg" class="w-48 mx-auto mb-4 cursor-pointer" onclick="openLightbox(this.src, 'باركود شام كاش')" alt="Sham Cash">
+                    <code class="block bg-gray-100 dark:bg-gray-900 p-2 rounded cursor-pointer text-xs" onclick="copyToClipboard('cae39473ec1428eb1036a8a8b54bc165')">cae39473ec1428eb1036a8a8b54bc165</code>
                 </div>
-                <div class="mt-3 text-sm text-gray-600">
-                    <span>رمز المحفظة: </span>
-                    <span class="clickable-code" onclick="copyToClipboard('cae39473ec1428eb1036a8a8b54bc165')" dir="ltr">cae39473ec1428eb1036a8a8b54bc165</span>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h3 class="font-bold mb-4">MTN كاش</h3>
+                    <img src="IMG-20260623-WA0005.svg" class="w-48 mx-auto mb-4 cursor-pointer" onclick="openLightbox(this.src, 'باركود MTN كاش')" alt="MTN Cash">
+                    <code class="block bg-gray-100 dark:bg-gray-900 p-2 rounded cursor-pointer text-xs" onclick="copyToClipboard('8198582131325391')">8198582131325391</code>
                 </div>
             </div>
-            <div class="bg-gray-50 rounded-2xl p-5 text-center shadow-sm payment-card">
-                <div class="flex justify-center mb-3"><i class="fas fa-mobile-alt text-3xl text-blue-700"></i></div>
-                <h3 class="text-xl font-bold mb-2">MTN كاش</h3>
-                <div class="mt-3 flex justify-center">
-                    <img src="IMG-20260623-WA0005.svg" alt="باركود MTN كاش" class="rounded-xl max-w-full shadow-md border border-gray-200" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23e6f2ff\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%23333\'%3EMTN%3C/text%3E%3C/svg%3E';">
-                </div>
-                <div class="mt-3 text-sm text-gray-600">
-                    <span>رقم المحفظة: </span>
-                    <span class="clickable-code" onclick="copyToClipboard('8198582131325391')" dir="ltr">8198582131325391</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="border-t border-gray-200 pt-6 pb-4 text-center text-gray-500 text-sm">
-        <p>© 2025 جميع الحقوق محفوظة | <span class="font-semibold">Jad Ali Agha</span> | مصمم جرافيك</p>
-        <p class="text-xs mt-1">حقوق النشر محفوظة لصالح Jad Ali Agha</p>
+    </main>
+
+    <footer class="bg-white dark:bg-gray-950 py-10 border-t border-gray-200 dark:border-gray-800 text-center">
+        <div class="flex justify-center gap-6 mb-6 text-2xl">
+            <a href="#" class="hover:text-accent"><i class="fab fa-behance"></i></a>
+            <a href="#" class="hover:text-accent"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-accent"><i class="fab fa-dribbble"></i></a>
+        </div>
+        <p class="opacity-60">© 2025 Jad Ali Agha. جميع الحقوق محفوظة</p>
     </footer>
-</main>
 
-<script>
-    const worksGrid = document.getElementById("worksGrid");
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-brand text-white px-6 py-2 rounded-full opacity-0 pointer-events-none transition duration-300 z-[1000]"></div>
 
-    // جلب الأعمال ديناميكياً من ملف JSON الخارجي
-    if (worksGrid) {
-        fetch('works.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(works => {
-                if (works.length === 0) {
-                    worksGrid.innerHTML = '<p class="text-center text-gray-500 col-span-full">لا توجد أعمال معروضة حالياً.</p>';
-                    return;
-                }
-                worksGrid.innerHTML = works.map(work => `
-                    <div class="bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gray-100 transition">
-                        <img src="${work.image}" class="work-img w-full h-52 object-cover" alt="${work.title}" onerror="this.src='https://via.placeholder.com/400x300?text=صورة'">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg text-gray-800">${escapeHtml(work.title)}</h3>
-                            <p class="text-gray-500 text-sm mt-1">${escapeHtml(work.description)}</p>
+    <script>
+        let allWorks = [];
+
+        // 1. Theme Management
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            updateThemeIcon(true);
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            updateThemeIcon(isDark);
+        }
+
+        function updateThemeIcon(isDark) {
+            const icon = document.getElementById('themeIcon');
+            icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // 2. Mobile Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // 3. Load & Filter Works
+        async function loadWorks() {
+            try {
+                const response = await fetch('works.json');
+                allWorks = await response.json();
+                renderWorks(allWorks);
+            } catch (error) {
+                console.error("Error loading JSON:", error);
+            }
+        }
+
+        function renderWorks(items) {
+            const grid = document.getElementById('worksGrid');
+            grid.innerHTML = items.map(work => `
+                <div class="work-card group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 cursor-pointer" onclick="openLightbox('${work.image}', '${work.title}')">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="${work.image}" class="w-full h-full object-cover" alt="${work.title}">
+                        <div class="absolute inset-0 bg-brand/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
                         </div>
                     </div>
-                `).join("");
-            })
-            .catch(error => {
-                console.error('Error loading works:', error);
-                worksGrid.innerHTML = '<p class="text-center text-gray-500 col-span-full py-4">⚠️ عذراً، تعذر تحميل قائمة الأعمال حالياً.</p>';
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase tracking-widest text-accent">${work.category}</span>
+                        <h3 class="text-xl font-bold mt-1">${work.title}</h3>
+                        <p class="text-sm opacity-60 mt-2">${work.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterWorks(category) {
+            // UI Update
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.dataset.filter === category) btn.classList.add('active');
             });
-    }
 
-    // دالة نسخ النص
-    function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            showToast("✅ تم نسخ الرمز: " + text);
-        }).catch(() => {
-            showToast("❌ فشل النسخ، حاول يدوياً");
-        });
-    }
+            if (category === 'all') {
+                renderWorks(allWorks);
+            } else {
+                const filtered = allWorks.filter(w => w.category === category);
+                renderWorks(filtered);
+            }
+        }
 
-    function showToast(msg) {
-        const toast = document.getElementById("toast");
-        toast.textContent = msg;
-        toast.style.opacity = "1";
-        setTimeout(() => {
-            toast.style.opacity = "0";
-        }, 2000);
-    }
+        // 4. Lightbox logic
+        function openLightbox(src, title) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxTitle').innerText = title;
+            lb.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
 
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
-    }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
-    window.copyToClipboard = copyToClipboard;
-</script>
+        // 5. Utility
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                toast.innerText = "✅ تم النسخ بنجاح";
+                toast.style.opacity = "1";
+                setTimeout(() => toast.style.opacity = "0", 2000);
+            });
+        }
+
+        window.onload = loadWorks;
+    </script>
 </body>
 </html>
