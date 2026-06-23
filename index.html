@@ -129,7 +129,7 @@
         <section id="contact" class="mb-14 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 md:p-8 border border-gray-100 dark:border-gray-700">
             <h2 class="text-2xl md:text-3xl font-bold mb-6 border-r-4 border-brand dark:border-accent pr-4">التواصل معي</h2>
             
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 gap-8 items-start">
                 <div class="space-y-4">
                     <div class="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700/50 transition">
                         <i class="fas fa-envelope text-2xl text-brand dark:text-accent w-8 text-center"></i>
@@ -161,13 +161,9 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 dark:bg-gray-900 p-5 rounded-2xl border border-dashed border-gray-300 dark:border-gray-700 flex flex-col justify-center items-center min-h-[300px]">
-                    <div class="text-center p-4">
-                        <i class="fab fa-google text-4xl text-brand dark:text-accent mb-3"></i>
-                        <h3 class="font-bold text-lg mb-1">استمارة تقدير المشروع</h3>
-                        <p class="text-sm opacity-60 max-w-xs mx-auto">هنا سيظهر الـ Google Form الخاص بك لكي يستطيع العملاء تعبئة طلباتهم مباشرة.</p>
-                    </div>
-                    </div>
+                <div class="w-full bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden shadow-inner border border-gray-200 dark:border-gray-700 p-1">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfdxZb_jln2ATfyc7aD1m3dzqu_mAIpfeAkhxX2jxiQoKYFgg/viewform?embedded=true" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0" class="w-full h-[520px] rounded-xl">جاري التحميل…</iframe>
+                </div>
             </div>
         </section>
 
@@ -205,14 +201,13 @@
     </main>
 
 <script>
-    // قائمة الأعمال مضافاً إليها حقل الـ category لدعم ميزة الفلترة الذكية
     let allWorks = [
         { title: "هوية بصرية - ماركة قهوة", description: "تصميم شعار وبطاقات عمل وكتالوجات مفهوم تجاري متكامل.", image: "https://picsum.photos/id/104/500/380", category: "branding" },
         { title: "شعار شركة تقنية عصري", description: "تصميم لوجو بسيط وفريد للشركات الناشئة التقنية.", image: "https://picsum.photos/id/106/500/380", category: "logos" },
         { title: "واجهة تطبيق مطعم ذكي", description: "تصميم تجربة مستخدم UI/UX تفاعلية واحترافية.", image: "https://picsum.photos/id/20/500/380", category: "uiux" }
     ];
 
-    // 1. تفعيل وإدارة المظهر (Dark/Light Mode)
+    // 1. إدارة المظهر (Dark/Light Mode)
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
         updateThemeIcon(true);
@@ -300,7 +295,6 @@
         return str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]));
     }
 
-    // تشغيل المعرض عند التحميل الأولي
     window.onload = () => { renderWorks(allWorks); };
 </script>
 </body>
