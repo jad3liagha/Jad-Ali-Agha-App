@@ -1,17 +1,20 @@
 [
   {
     "title": "هوية بصرية - ماركة قهوة",
-    "description": "تصميم شعار وبطاقات عمل وكتالوجات",
-    "image": "https://picsum.photos/id/104/400/300"
+    "description": "تصميم شعار وبطاقات عمل"،
+    "image": "https://picsum.photos/id/104/800/600",
+    "category": "branding"
   },
   {
-    "title": "ملصق دعائي - مهرجان ثقافي",
-    "description": "تصميم جرافيك متكامل بلمسة عصرية",
-    "image": "https://picsum.photos/id/106/400/300"
+    "title": "شعار شركة تقنية",
+    "description": "تصميم لوجو عصري وبسيط"،
+    "image": "https://picsum.photos/id/106/800/600",
+    "category": "logos"
   },
   {
-    "title": "غلاف مجلة فنية",
-    "description": "تصميم غلاف احترافي يجذب القراء",
-    "image": "https://picsum.photos/id/20/400/300"
+    "title": "واجهة تطبيق مطعم",
+    "description": "تصميم واجهة مستخدم احترافية"،
+    "image": "https://picsum.photos/id/20/800/600",
+    "category": "uiux"
   }
 ]
